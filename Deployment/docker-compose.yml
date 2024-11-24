@@ -1,0 +1,22 @@
+version: '3.5'
+services:
+  frontend:
+    image: ak232003/frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+
+  backend:
+    image: ak232003/backend
+    ports:
+      - "5000:5000"
+    depends_on:
+      - mongodb
+
+  mongodb:
+    image: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - /home/ak232003/expense-tracker_fullstack/data/db:/data/db:rw
