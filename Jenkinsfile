@@ -16,7 +16,7 @@ pipeline {
             steps {
                 echo 'Pulling Mongo Docker image from DockerHub'
                 script {
-                    docker.withRegistry('', 'DockerHubCred') {
+                    docker.withRegistry('', 'dockerhubcred') {
                         docker.image("${mongoImage}").pull()
                     }
                 }
@@ -26,7 +26,7 @@ pipeline {
         stage('Stage 1: Git Clone') {
             steps {
                 echo 'Cloning the Git repository'
-                git branch: 'master', url: 'https://github.com/AK232003/SPE-Project.git'
+                git branch: 'master', url: 'https://github.com/TheRodzz/spe-finance-tracker.git'
             }
         }
         
@@ -35,7 +35,7 @@ pipeline {
                 echo 'Building backend Docker image'
                 dir('backend')
                 {
-                    sh "docker build -t ak232003/${backend} ."
+                    sh "docker build -t vidhuarora/${backend} ."
                 }
             }
         }
@@ -45,7 +45,7 @@ pipeline {
                 echo 'Building frontend Docker image'
                 dir('frontend') {
                     echo 'Changing to frontend directory'
-                    sh "docker build -t ak232003/${frontend} ."
+                    sh "docker build -t vidhuarora/${frontend} ."
                 }
             }
         }
@@ -54,8 +54,8 @@ pipeline {
             steps {
                 echo 'Pushing backend Docker image to DockerHub'
                 script {
-                    docker.withRegistry('', 'DockerHubCred') {
-                        sh "docker push ak232003/${backend}"
+                    docker.withRegistry('', 'dockerhubcred') {
+                        sh "docker push vidhuarora/${backend}"
                     }
                 }
             }
@@ -65,8 +65,8 @@ pipeline {
             steps {
                 echo 'Pushing frontend Docker image to DockerHub'
                 script {
-                    docker.withRegistry('', 'DockerHubCred') {
-                        sh "docker push ak232003/${frontend}"
+                    docker.withRegistry('', 'dockerhubcred') {
+                        sh "docker push vidhuarora/${frontend}"
                     }
                 }
             }

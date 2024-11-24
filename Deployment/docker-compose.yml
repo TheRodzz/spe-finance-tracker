@@ -19,4 +19,4 @@ services:
     ports:
       - "27017:27017"
     volumes:
-      - /home/ak232003/expense-tracker_fullstack/data/db:/data/db:rw
+      - /home/vidhuarora/expense-tracker_fullstack/data/db:/data/db:rw
