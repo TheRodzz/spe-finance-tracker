@@ -41,6 +41,7 @@ exports.addExpense = async (req, res) => {
 
         await income.save()
         const user = await UserModel.findOne({ username });
+        console.log(user);
         user1 = user
         user.expenseTransactions.push(income);
         await user.save()
